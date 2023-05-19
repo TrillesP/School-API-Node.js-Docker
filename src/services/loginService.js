@@ -1,10 +1,10 @@
-const { user } = require('../models');
+const { teachers } = require('../models');
 
 const logIn = async ({ email, password }) => {
-  const userFound = await user.findOne({ 
+  const teacherFound = await teachers.findOne({ 
     where: { email, password },
   });
-  return userFound;
+  return teacherFound;
 };
 
 module.exports = {

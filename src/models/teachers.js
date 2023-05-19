@@ -5,8 +5,8 @@
  * @returns
  */
 module.exports = (sequelize, DataTypes) => {
-    const user = sequelize.define(
-      'user',
+    const teachers = sequelize.define(
+      'teachers',
       {
         id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
         fullName: DataTypes.STRING,
@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       {
         timestamps: false,
         underscored: true,
-        tableName: 'users'
+        tableName: 'teachers'
       },
     );
   
@@ -25,5 +25,5 @@ module.exports = (sequelize, DataTypes) => {
     //     { foreignKey: { name: 'userId', field: 'user_id' }, as: 'blogs' });
     // };
   
-    return user;
+    return teachers;
   };
