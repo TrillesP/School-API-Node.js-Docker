@@ -9,11 +9,11 @@ const options = {
     dialectOptions: {
       timezone: 'Z',
     },
-    logging: process.env.DEBUG !== 'false',
-  };
+    logging: process.env.DEBUG !== 'false'
+};
   
 module.exports = {
     development: {
-      ...options,
+      ...options
     }
 };
