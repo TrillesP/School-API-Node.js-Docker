@@ -17,14 +17,13 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'teachers',
-          key: 'id',
+          key: 'id'
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
-      },
+        onDelete: 'CASCADE'
+      }
     });
   },
-
   down: async (queryInterface, _Sequelize) => {
    await queryInterface.dropTable('classes');
   }

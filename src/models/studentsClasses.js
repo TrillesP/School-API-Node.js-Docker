@@ -11,19 +11,19 @@ module.exports = (sequelize, DataTypes) => {
         classId: {
           allowNull: false,
           type: DataTypes.INTEGER,
-          primaryKey: true,
+          primaryKey: true
         },
         studentId: {
           allowNull: false,
           type: DataTypes.INTEGER,
-          primaryKey: true,
-        },
+          primaryKey: true
+        }
       },
       {
         underscored: true,
         timestamps: false,
-        tableName: 'students_classes',
-      },
+        tableName: 'students_classes'
+      }
     );
   
     studentsClasses.associate = ({students, classes}) => {
@@ -31,14 +31,13 @@ module.exports = (sequelize, DataTypes) => {
         as: 'classes',
         through: studentsClasses,
         foreignKey: 'classId',
-        otherKey: 'studentId',
+        otherKey: 'studentId'
       });
-  
       classes.belongsToMany(students, {
         as: 'students',
         through: studentsClasses,
         foreignKey: 'studentId',
-        otherKey: 'classId',
+        otherKey: 'classId'
       });
     };
   
