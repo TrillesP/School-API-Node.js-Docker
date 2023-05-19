@@ -20,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       },
     );
   
-    // user.associate = (models) => {
-    //   user.hasMany(models.BlogPost,
-    //     { foreignKey: { name: 'userId', field: 'user_id' }, as: 'blogs' });
-    // };
+    teachers.associate = (models) => {
+      teachers.hasMany(models.classes,
+        { foreignKey: { name: 'teacherId', field: 'teacher_id' }, as: 'classes' });
+    };
   
     return teachers;
-  };
+};
