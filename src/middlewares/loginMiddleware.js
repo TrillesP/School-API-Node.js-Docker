@@ -5,7 +5,7 @@ const incompleteLogin = (req, res, next) => {
 
   const loginValidation = Joi.object({
     email: Joi.string().required(),
-    password: Joi.string().required(),
+    password: Joi.string().required()
   });
   const { error } = loginValidation
     .validate({ email, password });
