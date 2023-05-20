@@ -14,11 +14,11 @@
     "sequelize": "6.30.0",
     "shelljs": "0.8.5"
   },
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node .",
     "test-coverage": "jest -i --verbose --forceExit --coverage",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon ."
   },
   "keywords": [],
   "author": "",

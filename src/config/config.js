@@ -1,15 +1,17 @@
 require('dotenv').config();
+const CONST = require('../consts.env.js')
+
 const options = {
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DB_NAME,
-    username: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    dialect: process.env.MYSQLDIALECT || 'mysql',
+    host: CONST.DB_HOST,
+    port: CONST.DB_PORT,
+    database: CONST.DB_NAME,
+    username: CONST.DB_USER,
+    password: CONST.DB_PASSWORD,
+    dialect: 'mysql',
+    logging: true,
     dialectOptions: {
       timezone: 'Z',
     },
-    logging: process.env.DEBUG !== 'false'
 };
   
 module.exports = {

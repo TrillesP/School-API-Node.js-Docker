@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
+const CONST = require('../consts.env.js')
 
-const secret = 'secretTrilles';
+const secret = CONST.JWT_SECRET;
 
 const JWT_CONFIG = {
   algorithm: 'HS256',

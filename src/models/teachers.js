@@ -14,8 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         password: DataTypes.STRING
       },
       {
-        timestamps: false,
-        underscored: true,
         tableName: 'teachers'
       },
     );
