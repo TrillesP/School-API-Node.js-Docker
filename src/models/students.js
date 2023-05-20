@@ -13,10 +13,8 @@ module.exports = (sequelize, DataTypes) => {
         phone: DataTypes.STRING
       },
       {
-        timestamps: false,
-        underscored: true,
-        tableName: 'students',
-      },
+        tableName: 'students'
+      }
     );
   
     return students;

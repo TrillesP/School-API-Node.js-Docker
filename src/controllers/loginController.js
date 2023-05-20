@@ -6,7 +6,6 @@ const logIn = async (req, res) => {
     const { email, password } = req.body;
     
     const teacher = await loginService.logIn({ email, password });
-    // service deve retornar true/false caso o email ou senha não estejam no db
     if (teacher === null) {
       return res.status(400).json({ message: 'Wrong email or password' });
     }

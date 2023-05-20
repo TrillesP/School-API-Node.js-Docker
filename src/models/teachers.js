@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       {
         tableName: 'teachers'
-      },
+      }
     );
   
     teachers.associate = (models) => {
