@@ -4,7 +4,7 @@ const fullNameValidation = (req, res, next) => {
   const { fullName } = req.body;
 
   const teacherValidation = Joi.object({
-    fullName: Joi.string().min(9)
+    fullName: Joi.string().min(9).required()
   });
   const { error } = teacherValidation
     .validate({ fullName });
