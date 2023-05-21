@@ -1,6 +1,7 @@
 const express = require('express');
 const classesController = require('../controllers/classesController');
 const { tokenValidation } = require('../middlewares/tokenMiddleware');
+const { studentIdValidation } = require('../middlewares/classesMiddleware');
 
 const routers = express.Router();
 
@@ -10,7 +11,7 @@ routers.post('/', tokenValidation, classesController.newClass);
 
 routers.get('/:id', tokenValidation, classesController.findClassById);
 
-routers.post('/:id', tokenValidation, classesController.addStudentToClass);
+routers.post('/:id', tokenValidation, studentIdValidation, classesController.addStudentToClass);
 
 routers.delete('/:id', tokenValidation, classesController.deleteClassById);
 
