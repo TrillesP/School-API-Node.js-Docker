@@ -1,6 +1,6 @@
 const { teachers } = require('../models'); 
 
-const createdTeacher = async ({ fullName, email, password }) => {
+const createTeacher = async ({ fullName, email, password }) => {
   const [teacher, created] = await teachers.findOrCreate({ 
     where: { email, password },
     defaults: { 
@@ -31,7 +31,7 @@ const deleteTeacher = async (id) => {
 };
 
 module.exports = {
-  createdTeacher,
+  createTeacher,
   findTeachers,
   findTeacherById,
   deleteTeacher,

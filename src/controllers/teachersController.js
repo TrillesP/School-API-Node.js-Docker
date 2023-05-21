@@ -5,7 +5,7 @@ const createTeacher = async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
     const { data: { teacherId } } = req.teacher;
-    if (teacherId != 1){
+    if (Number(teacherId) != 1){
       return res.status(403).json({ message: 'Access denied. Only the admin can add teachers.' })
     }
 
@@ -46,7 +46,7 @@ const deleteTeacher = async (req, res) => {
   const { data: { teacherId } } = req.teacher;
   const teacher = await teachersService.deleteTeacher(teacherId);
   if (teacher) {
-    return res.status(204).json();
+    return res.status(204).json({ message: 'Teacher deleted' });
   }
 };
 
