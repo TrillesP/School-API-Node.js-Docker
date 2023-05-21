@@ -10,7 +10,7 @@ const newStudent = async (req, res) => {
     
     const student = await studentsService.newStudent({ fullName, phone });
     if (!student) {
-      return res.status(400).json({ message: "Student already registered" });
+      return res.status(409).json({ message: "Student already registered" });
     }
     return res.status(201).json(student);   
   } catch (error) {

@@ -1,5 +1,6 @@
 const classesService = require('../services/classesService');
 const teachersService = require('../services/teachersService');
+const studentsService = require('../services/studentsService');
 
 const findAllClasses = async (_req, res) => {
     try {
@@ -35,6 +36,25 @@ const findClassById = async (req, res) => {
   }
 };
 
+const addStudentToClass = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { studentId } = req.body;
+    const classFound = await classesService.findClassById(id);
+    if (!classFound) return res.status(404).json({ message: 'Class does not exist' });
+
+    const studentFound = await studentsService.findStudentById(studentId);
+    if (!studentFound) return res.status(404).json({ message: 'Student does not exist' });
+
+    const addedStudent = await classesService.addStudentToClass(id,studentId);
+    if (!addedStudent) return res.status(409).json({ message: 'This student already attends this class' });
+
+    return res.status(201).json({ message: 'Successfully added student to class'});
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal error', error: error.message });
+  }
+};
+
 const deleteClassById = async (req, res) => {
     const { id } = req.params;
     const { data: { teacherId } } = req.teacher;
@@ -53,5 +73,6 @@ module.exports = {
   findAllClasses,
   newClass,
   findClassById,
+  addStudentToClass,
   deleteClassById
 };

@@ -10,6 +10,8 @@ routers.post('/', tokenValidation, classesController.newClass);
 
 routers.get('/:id', tokenValidation, classesController.findClassById);
 
+routers.post('/:id', tokenValidation, classesController.addStudentToClass);
+
 routers.delete('/:id', tokenValidation, classesController.deleteClassById);
 
 module.exports = routers;

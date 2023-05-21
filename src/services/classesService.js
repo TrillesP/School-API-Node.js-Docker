@@ -1,4 +1,5 @@
 const { classes } = require('../models'); 
+const { studentsClasses } = require('../models');
 
 const findAllClasses = async () => {
     const allClasses = await classes.findAll();
@@ -22,6 +23,18 @@ const findClassById = async (id) => {
   return classFound;
 };
 
+const addStudentToClass = async (classId, studentId) => {
+  const [result, created] = await studentsClasses.findOrCreate({ 
+    where: { classId, studentId },
+    defaults: { 
+      classId,
+      studentId
+    }
+  });
+  if (created) return result;
+  return created;
+};
+
 const deleteClassById = async (id) => {
   const result = await classes.destroy({ where: { id } });
   return result;
@@ -31,5 +44,6 @@ module.exports = {
   findAllClasses,
   newClass,
   findClassById,
+  addStudentToClass,
   deleteClassById
 };
