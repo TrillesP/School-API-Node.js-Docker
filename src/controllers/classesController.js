@@ -66,7 +66,7 @@ const removeStudentFromClass = async (req, res) => {
     const { studentId } = req.body;
     const { data: { teacherId } } = req.teacher;
 
-    const classFound = await classesService.findClassById(id, studentId);
+    const classFound = await classesService.findClassById(id);
     if (!classFound) return res.status(404).json({ message: 'Class does not exist' });
 
     const studentFound = await studentsService.findStudentById(studentId);
