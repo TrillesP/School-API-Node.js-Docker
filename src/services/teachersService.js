@@ -3,7 +3,7 @@ const { teachers } = require('../models');
 const createdTeacher = async ({ fullName, email, password }) => {
   const [teacher, created] = await teachers.findOrCreate({ 
     where: { email, password },
-    defaults: {      
+    defaults: { 
       fullName,
       email, 
       password

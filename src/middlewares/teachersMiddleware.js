@@ -10,7 +10,7 @@ const fullNameValidation = (req, res, next) => {
     .validate({ fullName });
   if (error) {    
     return res.status(400).json({ 
-      message: '"fullName" must have at least 9 characters' });
+      message: "'fullName' must have at least 9 characters" });
   }
   next();
 }; 
@@ -27,7 +27,7 @@ const emailValidation = (req, res, next) => {
   const { error } = teacherValidation
     .validate({ email });
   if (error) {    
-    return res.status(400).json({ message: '"email" must be a valid e-mail' });
+    return res.status(400).json({ message: "'email' must be a valid e-mail" });
   }
   next();
 }; 
@@ -42,7 +42,7 @@ const passwordValidation = (req, res, next) => {
     .validate({ password });
   if (error) {    
     return res.status(400).json({ 
-      message: '"password" must have at least 6 characters' });
+      message: "'password' must have at least 6 characters" });
   }
   next();
 }; 

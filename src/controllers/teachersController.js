@@ -1,12 +1,16 @@
 const teachersService = require('../services/teachersService');
 const { createToken } = require('../utils/jwtAuth');
 
-const createdTeacher = async (req, res) => {
+const createTeacher = async (req, res) => {
   try {
     const { fullName, email, password } = req.body;
-    
-    const teacher = await teachersService.createdTeacher({ fullName, email, password });
-    if (!user) {
+    const { data: { teacherId } } = req.teacher;
+    if (teacherId != 1){
+      return res.status(403).json({ message: 'Access denied. Only the admin can add teachers.' })
+    }
+
+    const teacher = await teachersService.createTeacher({ fullName, email, password });
+    if (!teacher) {
       return res.status(409).json({ message: 'Teacher already registered' });
     }
     const token = createToken({ teacherId: teacher.id });
@@ -47,7 +51,7 @@ const deleteTeacher = async (req, res) => {
 };
 
 module.exports = {
-  createdTeacher,
+  createTeacher,
   findTeachers,
   findTeacherById,
   deleteTeacher,
