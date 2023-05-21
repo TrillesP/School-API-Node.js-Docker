@@ -7,7 +7,7 @@ const createTeacher = async ({ fullName, email, password }) => {
       fullName,
       email, 
       password
-    },
+    }
   });
   if (created) return teacher;
   return created;
