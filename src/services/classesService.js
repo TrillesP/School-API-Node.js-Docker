@@ -35,6 +35,18 @@ const addStudentToClass = async (classId, studentId) => {
   return created;
 };
 
+const findClassWithStudent = async (classId, studentId) => {
+  const classWithStudentFound = await studentsClasses.findOne({where: { classId, studentId }});
+  return classWithStudentFound;
+};
+
+const removeStudentFromClass = async (classId, studentId) => {
+  const result = await studentsClasses.destroy({ 
+    where: { classId, studentId }
+  });
+  return result;
+};
+
 const deleteClassById = async (id) => {
   const result = await classes.destroy({ where: { id } });
   return result;
@@ -45,5 +57,7 @@ module.exports = {
   newClass,
   findClassById,
   addStudentToClass,
+  findClassWithStudent,
+  removeStudentFromClass,
   deleteClassById
 };

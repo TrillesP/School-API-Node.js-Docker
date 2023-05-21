@@ -40,16 +40,46 @@ const addStudentToClass = async (req, res) => {
   try {
     const { id } = req.params;
     const { studentId } = req.body;
+    const { data: { teacherId } } = req.teacher;
+
     const classFound = await classesService.findClassById(id);
     if (!classFound) return res.status(404).json({ message: 'Class does not exist' });
 
     const studentFound = await studentsService.findStudentById(studentId);
     if (!studentFound) return res.status(404).json({ message: 'Student does not exist' });
 
-    const addedStudent = await classesService.addStudentToClass(id,studentId);
+    const addedStudent = await classesService.addStudentToClass(id, studentId);
     if (!addedStudent) return res.status(409).json({ message: 'This student already attends this class' });
 
+    if (Number(teacherId) !== 1) {
+      return res.status(403).json({ message: 'Access denied' }); 
+    }
     return res.status(201).json({ message: 'Successfully added student to class'});
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal error', error: error.message });
+  }
+};
+
+const removeStudentFromClass = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { studentId } = req.body;
+    const { data: { teacherId } } = req.teacher;
+
+    const classFound = await classesService.findClassById(id, studentId);
+    if (!classFound) return res.status(404).json({ message: 'Class does not exist' });
+
+    const studentFound = await studentsService.findStudentById(studentId);
+    if (!studentFound) return res.status(404).json({ message: 'Student does not exist' });
+
+    const classWithStudentFound = await classesService.findClassWithStudent(id, studentId);
+    if (!classWithStudentFound) return res.status(404).json({ message: 'This student does not attend this class' });
+
+    if (Number(teacherId) !== 1) {
+      return res.status(403).json({ message: 'Access denied' }); 
+    }
+    await classesService.removeStudentFromClass(id,studentId);
+    return res.status(204).json();
   } catch (error) {
     return res.status(500).json({ message: 'Internal error', error: error.message });
   }
@@ -74,5 +104,6 @@ module.exports = {
   newClass,
   findClassById,
   addStudentToClass,
+  removeStudentFromClass,
   deleteClassById
 };
